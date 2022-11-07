@@ -100,3 +100,8 @@
   border: none;
   border-radius: 0 0 3px 0;
 }
+.text-secondary {
+  color: gray;
+  font-size: 0.8em;
+  font-style: italic;
+}

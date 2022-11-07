@@ -33,19 +33,31 @@ function render(variables = {}) {
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${variables.name || placeholder("Name")} ${variables.lastname ||
+    placeholder("LastName")}</h1>
+              <h2>${variables.role || placeholder("Role")}</h2>
+          <h3>${variables.country || placeholder("Country")} ${variables.city ||
+    placeholder("City")}</h3>
+          <ul class="position-right"> ${getSocial(variables)}
           </ul>
         </div>
     `;
 }
-
+function getSocial(variables) {
+  let SocialList = "";
+  let SocialNetworks = ["twitter", "github", "linkedin", "instagram"];
+  SocialNetworks.forEach(Social => {
+    if (variables[Social]) {
+      SocialList =
+        SocialList +
+        '<li><a href="https://${variable[Social]}.com/${variable[Social]}><i class="bi bi-${variable[Social]}"></i></a></li>';
+    }
+  });
+  return SocialList;
+}
+function placeholder(text) {
+  return `<span class="placeholder">${text}</span>`;
+}
 /**
  * Don't change any of the lines below, here is where we do the logic for the dropdowns
  */
